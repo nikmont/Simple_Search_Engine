@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="false" />
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="#JAVA_INTERNAL" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Problems/Books as strings" />
+            <option value="$PROJECT_DIR$/Problems/Convert persons and patients to string" />
+            <option value="$PROJECT_DIR$/Problems/Convert vehicles and cars to string" />
+            <option value="$PROJECT_DIR$/Problems/Filtering the list" />
+            <option value="$PROJECT_DIR$/Problems/Frequency of characters" />
+            <option value="$PROJECT_DIR$/Problems/Rotating table" />
+            <option value="$PROJECT_DIR$/Problems/Split a list into sublists" />
+            <option value="$PROJECT_DIR$/Problems/The longest string in the list" />
+            <option value="$PROJECT_DIR$/Simple Search Engine/task" />
+            <option value="$PROJECT_DIR$/util" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

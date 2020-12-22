@@ -1,0 +1,15 @@
+# Project exclude paths
+/.gradle/
+/Problems/Filtering the list/out/
+/Problems/Filtering the list/out/production/classes/
+/Problems/Frequency of characters/out/
+/Problems/Frequency of characters/out/production/classes/
+/Problems/Rotating table/out/
+/Problems/Rotating table/out/production/classes/
+/Problems/Split a list into sublists/out/
+/Problems/Split a list into sublists/out/production/classes/
+/Problems/The longest string in the list/out/
+/Problems/The longest string in the list/out/production/classes/
+/Simple Search Engine/task/build/
+/Simple Search Engine/task/out/
+/Simple Search Engine/task/out/production/classes/
