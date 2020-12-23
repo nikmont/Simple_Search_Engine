@@ -5,13 +5,12 @@ import java.util.Scanner;
 
 public class MenuViewer {
 
-    public static Strategy currentStrategy;
-
+    private static SearchController controller;
     private static boolean isExit = false;
     private static final Scanner scan = new Scanner(System.in);
 
     public static void start(String filePath) {
-        SearchController.addData(filePath);
+        controller = new SearchController(filePath);
 
         while (!isExit) {
             System.out.println("\n=== Menu ===\n" +
@@ -23,23 +22,10 @@ public class MenuViewer {
 
             switch (userInput) {
                 case 1:
-                    String input = scan.nextLine();
-                    switch (input) {
-                        case "ALL":
-                            currentStrategy = Strategy.ALL;
-                            break;
-                        case "ANY":
-                            currentStrategy = Strategy.ANY;
-                            break;
-                        case "NONE":
-                            currentStrategy = Strategy.NONE;
-                            break;
-                        default:
-                            System.out.println("Unknown strategy");
-                    }
+                    List<String> found = controller.findPerson();
 
-                    List<String> found = SearchController.findPerson();
                     if (found != null) {
+                        System.out.printf("%d persons found:%n", found.size());
                         found.forEach(System.out::println);
                     } else {
                         System.out.println("No matching people found.");
@@ -47,7 +33,7 @@ public class MenuViewer {
                     break;
                 case 2:
                     System.out.println("\n=== List of people ===");
-                    SearchController.getAll().forEach(System.out::println);
+                    controller.getAll().forEach(System.out::println);
                     break;
                 case 0:
                     isExit = true;

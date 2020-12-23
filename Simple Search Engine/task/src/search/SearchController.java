@@ -6,11 +6,13 @@ import java.io.IOException;
 import java.util.*;
 
 public class SearchController {
-    private static List<String> list;
-    private static final Map<String, List<Integer>> persons = new HashMap<>();
-    private static final Scanner scan = new Scanner(System.in);
 
-    public static void addData(String file) {
+    private static List<String> list;
+    private static final Map<String, List<Integer>> indexMap = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+    private static final Scanner scan = new Scanner(System.in);
+    private static SearchStrategy currentStrategy;
+
+    public SearchController(String file) {
         list = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -22,44 +24,42 @@ public class SearchController {
             System.out.println("File not found!");
         }
 
-        indexList(list);
-
+        indexing(list);
     }
 
-    private static void indexList(List<String> list) {
+    private void indexing(List<String> list) {
         for (String person:list) {
             for (String word:person.split("\\s")) {
-                if (!persons.containsKey(word)) {
-                    persons.put(word, new ArrayList<>());
+                if (!indexMap.containsKey(word)) {
+                    indexMap.put(word, new ArrayList<>());
                 }
-                persons.get(word).add(list.indexOf(person));
+                indexMap.get(word).add(list.indexOf(person));
             }
         }
     }
 
-    public static List<String> findPerson() {
-        
-        List<String> founded = new ArrayList<>();
+    public List<String> findPerson() {
 
-        System.out.println("\nEnter a name or email to search all suitable people.");
-        String toSearch = scan.nextLine();
-
-        for (Map.Entry<String, List<Integer>> person : persons.entrySet()) {
-            if (person.getKey().equalsIgnoreCase(toSearch)) {
-                for (Integer index:person.getValue()) {
-                    founded.add(list.get(index));
-                }
-            }
+        System.out.println("\nSelect a matching strategy: ALL, ANY, NONE");
+        String input = scan.nextLine();
+        switch (input) {
+            case "ALL":
+                currentStrategy = new SearchAll();
+                break;
+            case "ANY":
+                currentStrategy = new SearchAny();
+                break;
+            case "NONE":
+                currentStrategy = new SearchNone();
+                break;
+            default:
+                System.out.println("Unknown strategy");
         }
 
-        if (founded.size() > 0) {
-            return founded;
-        } else {
-            return null;
-        }
+       return currentStrategy.find(indexMap, list);
     }
 
-    public static List<String> getAll() {
+    public List<String> getAll() {
         return list;
     }
 
